@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitHubOrganization": "diegolamas",
+    "baseName": "festis",
+    "packageName": "es.festis.atlas",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "gradle",
+    "enableSocialSignIn": true,
+    "useSass": true,
+    "clientPackageManager": "yarn",
+    "testFrameworks": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "clientFramework": "angularX",
+    "jhipsterVersion": "4.14.2",
+    "packageFolder": "es/festis/atlas",
+    "jwtSecretKey": "bd1240b306a4773ca14b2ca4847b3946796f8564",
+    "jhiPrefix": "jhi"
+  }
+}
