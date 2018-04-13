@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span jhiTranslate="festisApp.artist.home.title">Artists</span>
+        <button class="btn btn-primary float-right jh-create-entity create-artist" [routerLink]="['/', { outlets: { popup: ['artist-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="festisApp.artist.home.createLabel">
+            Create new Artist
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="artists">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="festisApp.artist.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="previewUrl"><span jhiTranslate="festisApp.artist.previewUrl">Preview Url</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="web"><span jhiTranslate="festisApp.artist.web">Web</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="spotify"><span jhiTranslate="festisApp.artist.spotify">Spotify</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="googlemusic"><span jhiTranslate="festisApp.artist.googlemusic">Googlemusic</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="applemusic"><span jhiTranslate="festisApp.artist.applemusic">Applemusic</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="facebook"><span jhiTranslate="festisApp.artist.facebook">Facebook</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="twitter"><span jhiTranslate="festisApp.artist.twitter">Twitter</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instagram"><span jhiTranslate="festisApp.artist.instagram">Instagram</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="youtube"><span jhiTranslate="festisApp.artist.youtube">Youtube</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imageUrl"><span jhiTranslate="festisApp.artist.imageUrl">Image Url</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="popularity"><span jhiTranslate="festisApp.artist.popularity">Popularity</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let artist of artists ;trackBy: trackId">
+                <td><a [routerLink]="['../artist', artist.id ]">{{artist.id}}</a></td>
+                <td>{{artist.name}}</td>
+                <td>{{artist.previewUrl}}</td>
+                <td>{{artist.web}}</td>
+                <td>{{artist.spotify}}</td>
+                <td>{{artist.googlemusic}}</td>
+                <td>{{artist.applemusic}}</td>
+                <td>{{artist.facebook}}</td>
+                <td>{{artist.twitter}}</td>
+                <td>{{artist.instagram}}</td>
+                <td>{{artist.youtube}}</td>
+                <td>{{artist.imageUrl}}</td>
+                <td>{{artist.popularity}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../artist', artist.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'artist/'+ artist.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'artist/'+ artist.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

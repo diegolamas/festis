@@ -1,0 +1,32 @@
+
+<div *ngIf="attend">
+    <h2><span jhiTranslate="festisApp.attend.detail.title">Attend</span> {{attend.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="festisApp.attend.user">User</span></dt>
+        <dd>
+            {{attend.userLogin}}
+        </dd>
+        <dt><span jhiTranslate="festisApp.attend.edition">Edition</span></dt>
+        <dd>
+            <div *ngIf="attend.editionId">
+                <a [routerLink]="['/edition', attend.editionId]">{{attend.editionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'attend/'+ attend.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

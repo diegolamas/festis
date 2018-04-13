@@ -1,0 +1,23 @@
+
+{
+    "festisApp": {
+        "attend" : {
+            "home": {
+                "title": "Attends",
+                "createLabel": "Crear nuevo Attend",
+                "createOrEditLabel": "Crear o editar Attend"
+            },
+            "created": "Un nuevo Attend ha sido creado con el identificador {{ param }}",
+            "updated": "Un Attend ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Attend ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Attend {{ id }}?"
+            },
+            "detail": {
+                "title": "Attend"
+            },
+            "user": "User",
+            "edition": "Edition"
+        }
+    }
+}

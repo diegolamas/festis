@@ -7,6 +7,14 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "festival": "Festival",
+                "edition": "Edition",
+                "comment": "Comment",
+                "artist": "Artist",
+                "announcement": "Announcement",
+                "follow": "Follow",
+                "userExtra": "User Extra",
+                "attend": "Attend",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

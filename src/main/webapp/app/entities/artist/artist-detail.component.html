@@ -1,0 +1,70 @@
+
+<div *ngIf="artist">
+    <h2><span jhiTranslate="festisApp.artist.detail.title">Artist</span> {{artist.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="festisApp.artist.name">Name</span></dt>
+        <dd>
+            <span>{{artist.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.previewUrl">Preview Url</span></dt>
+        <dd>
+            <span>{{artist.previewUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.web">Web</span></dt>
+        <dd>
+            <span>{{artist.web}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.spotify">Spotify</span></dt>
+        <dd>
+            <span>{{artist.spotify}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.googlemusic">Googlemusic</span></dt>
+        <dd>
+            <span>{{artist.googlemusic}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.applemusic">Applemusic</span></dt>
+        <dd>
+            <span>{{artist.applemusic}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.facebook">Facebook</span></dt>
+        <dd>
+            <span>{{artist.facebook}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.twitter">Twitter</span></dt>
+        <dd>
+            <span>{{artist.twitter}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.instagram">Instagram</span></dt>
+        <dd>
+            <span>{{artist.instagram}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.youtube">Youtube</span></dt>
+        <dd>
+            <span>{{artist.youtube}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.imageUrl">Image Url</span></dt>
+        <dd>
+            <span>{{artist.imageUrl}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.artist.popularity">Popularity</span></dt>
+        <dd>
+            <span>{{artist.popularity}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'artist/'+ artist.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

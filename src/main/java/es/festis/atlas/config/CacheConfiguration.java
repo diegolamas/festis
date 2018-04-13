@@ -43,6 +43,20 @@ public class CacheConfiguration {
             cm.createCache(es.festis.atlas.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(es.festis.atlas.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(es.festis.atlas.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Festival.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Edition.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Edition.class.getName() + ".attendants", jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Edition.class.getName() + ".announcements", jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Edition.class.getName() + ".comments", jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Comment.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Artist.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Artist.class.getName() + ".followers", jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Artist.class.getName() + ".announcements", jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Announcement.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Announcement.class.getName() + ".artists", jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Follow.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.UserExtra.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.Attend.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

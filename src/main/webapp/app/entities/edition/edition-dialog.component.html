@@ -1,0 +1,131 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myEditionLabel" jhiTranslate="festisApp.edition.home.createOrEditLabel">Create or edit a Edition</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!edition.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="edition.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.location" for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                [(ngModel)]="edition.location" required/>
+            <div [hidden]="!(editForm.controls.location?.dirty && editForm.controls.location?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.location?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.startDate" for="field_startDate">Start Date</label>
+            <div class="input-group">
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="edition.startDate"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.startDate?.dirty && editForm.controls.startDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.startDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.endDate" for="field_endDate">End Date</label>
+            <div class="input-group">
+                <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker  #endDateDp="ngbDatepicker" [(ngModel)]="edition.endDate"
+                required/>
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.endDate?.dirty && editForm.controls.endDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.endDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.hasCamping" for="field_hasCamping">Has Camping</label>
+            <input type="checkbox" class="form-control" name="hasCamping" id="field_hasCamping"
+                [(ngModel)]="edition.hasCamping" />
+            <div [hidden]="!(editForm.controls.hasCamping?.dirty && editForm.controls.hasCamping?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.hasCamping?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="edition.price" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.cover" for="field_cover">Cover</label>
+            <div>
+                <img [src]="'data:' + edition.coverContentType + ';base64,' + edition.cover" style="max-height: 100px;" *ngIf="edition.cover" alt="edition image"/>
+                <div *ngIf="edition.cover" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{edition.coverContentType}}, {{byteSize(edition.cover)}}</span>
+                    <button type="button" (click)="clearInputImage('cover', 'coverContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_cover" (change)="setFileData($event, edition, 'cover', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="cover" id="field_cover"
+                [(ngModel)]="edition.cover" />
+            <input type="hidden" class="form-control" name="coverContentType" id="field_coverContentType"
+                [(ngModel)]="edition.coverContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.poster" for="field_poster">Poster</label>
+            <div>
+                <img [src]="'data:' + edition.posterContentType + ';base64,' + edition.poster" style="max-height: 100px;" *ngIf="edition.poster" alt="edition image"/>
+                <div *ngIf="edition.poster" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{edition.posterContentType}}, {{byteSize(edition.poster)}}</span>
+                    <button type="button" (click)="clearInputImage('poster', 'posterContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_poster" (change)="setFileData($event, edition, 'poster', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="poster" id="field_poster"
+                [(ngModel)]="edition.poster" />
+            <input type="hidden" class="form-control" name="posterContentType" id="field_posterContentType"
+                [(ngModel)]="edition.posterContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.edition.festival" for="field_festival">Festival</label>
+            <select class="form-control" id="field_festival" name="festival" [(ngModel)]="edition.festivalId"  required>
+                <option *ngIf="!editForm.value.festival" [ngValue]="null" selected></option>
+                <option [ngValue]="festivalOption.id" *ngFor="let festivalOption of festivals; trackBy: trackFestivalById">{{festivalOption.name}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.festival?.dirty && editForm.controls.festival?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.festival?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

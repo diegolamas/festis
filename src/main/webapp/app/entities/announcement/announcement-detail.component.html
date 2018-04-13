@@ -1,0 +1,47 @@
+
+<div *ngIf="announcement">
+    <h2><span jhiTranslate="festisApp.announcement.detail.title">Announcement</span> {{announcement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="festisApp.announcement.text">Text</span></dt>
+        <dd>
+            <span>{{announcement.text}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.announcement.image">Image</span></dt>
+        <dd>
+            <div *ngIf="announcement.image">
+                <a (click)="openFile(announcement.imageContentType, announcement.image)">
+                    <img [src]="'data:' + announcement.imageContentType + ';base64,' + announcement.image" style="max-width: 100%;" alt="announcement image"/>
+                </a>
+                {{announcement.imageContentType}}, {{byteSize(announcement.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="festisApp.announcement.artist">Artist</span></dt>
+        <dd>
+            <span *ngFor="let artist of announcement.artists; let last = last">
+                <a [routerLink]="['/artist', artist?.id ]">{{artist.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.announcement.edition">Edition</span></dt>
+        <dd>
+            <div *ngIf="announcement.editionId">
+                <a [routerLink]="['/edition', announcement.editionId]">{{announcement.editionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'announcement/'+ announcement.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

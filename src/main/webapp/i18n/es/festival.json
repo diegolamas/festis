@@ -1,0 +1,27 @@
+
+{
+    "festisApp": {
+        "festival" : {
+            "home": {
+                "title": "Festivals",
+                "createLabel": "Crear nuevo Festival",
+                "createOrEditLabel": "Crear o editar Festival"
+            },
+            "created": "Un nuevo Festival ha sido creado con el identificador {{ param }}",
+            "updated": "Un Festival ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Festival ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Festival {{ id }}?"
+            },
+            "detail": {
+                "title": "Festival"
+            },
+            "name": "Name",
+            "web": "Web",
+            "facebook": "Facebook",
+            "twitter": "Twitter",
+            "instagram": "Instagram",
+            "youtube": "Youtube"
+        }
+    }
+}
