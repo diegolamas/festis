@@ -1,0 +1,66 @@
+
+<div *ngIf="edition">
+    <h2><span jhiTranslate="festisApp.edition.detail.title">Edition</span> {{edition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="festisApp.edition.location">Location</span></dt>
+        <dd>
+            <span>{{edition.location}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{edition.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.endDate">End Date</span></dt>
+        <dd>
+            <span>{{edition.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.hasCamping">Has Camping</span></dt>
+        <dd>
+            <span>{{edition.hasCamping}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.price">Price</span></dt>
+        <dd>
+            <span>{{edition.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.cover">Cover</span></dt>
+        <dd>
+            <div *ngIf="edition.cover">
+                <a (click)="openFile(edition.coverContentType, edition.cover)">
+                    <img [src]="'data:' + edition.coverContentType + ';base64,' + edition.cover" style="max-width: 100%;" alt="edition image"/>
+                </a>
+                {{edition.coverContentType}}, {{byteSize(edition.cover)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.poster">Poster</span></dt>
+        <dd>
+            <div *ngIf="edition.poster">
+                <a (click)="openFile(edition.posterContentType, edition.poster)">
+                    <img [src]="'data:' + edition.posterContentType + ';base64,' + edition.poster" style="max-width: 100%;" alt="edition image"/>
+                </a>
+                {{edition.posterContentType}}, {{byteSize(edition.poster)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="festisApp.edition.festival">Festival</span></dt>
+        <dd>
+            <div *ngIf="edition.festivalId">
+                <a [routerLink]="['/festival', edition.festivalId]">{{edition.festivalName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'edition/'+ edition.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

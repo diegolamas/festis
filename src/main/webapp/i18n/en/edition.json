@@ -1,0 +1,32 @@
+
+{
+    "festisApp": {
+        "edition" : {
+            "home": {
+                "title": "Editions",
+                "createLabel": "Create a new Edition",
+                "createOrEditLabel": "Create or edit a Edition"
+            },
+            "created": "A new Edition is created with identifier {{ param }}",
+            "updated": "A Edition is updated with identifier {{ param }}",
+            "deleted": "A Edition is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Edition {{ id }}?"
+            },
+            "detail": {
+                "title": "Edition"
+            },
+            "location": "Location",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "hasCamping": "Has Camping",
+            "price": "Price",
+            "cover": "Cover",
+            "poster": "Poster",
+            "attendant": "Attendant",
+            "announcement": "Announcement",
+            "comment": "Comment",
+            "festival": "Festival"
+        }
+    }
+}
