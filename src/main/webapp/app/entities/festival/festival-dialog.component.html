@@ -1,0 +1,61 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFestivalLabel" jhiTranslate="festisApp.festival.home.createOrEditLabel">Create or edit a Festival</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!festival.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="festival.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.festival.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="festival.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.festival.web" for="field_web">Web</label>
+            <input type="text" class="form-control" name="web" id="field_web"
+                [(ngModel)]="festival.web" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.festival.facebook" for="field_facebook">Facebook</label>
+            <input type="text" class="form-control" name="facebook" id="field_facebook"
+                [(ngModel)]="festival.facebook" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.festival.twitter" for="field_twitter">Twitter</label>
+            <input type="text" class="form-control" name="twitter" id="field_twitter"
+                [(ngModel)]="festival.twitter" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.festival.instagram" for="field_instagram">Instagram</label>
+            <input type="text" class="form-control" name="instagram" id="field_instagram"
+                [(ngModel)]="festival.instagram" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="festisApp.festival.youtube" for="field_youtube">Youtube</label>
+            <input type="text" class="form-control" name="youtube" id="field_youtube"
+                [(ngModel)]="festival.youtube" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

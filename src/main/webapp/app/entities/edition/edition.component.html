@@ -1,0 +1,86 @@
+<div>
+    <h2>
+        <span jhiTranslate="festisApp.edition.home.title">Editions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-edition" [routerLink]="['/', { outlets: { popup: ['edition-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="festisApp.edition.home.createLabel">
+            Create new Edition
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="editions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="location"><span jhiTranslate="festisApp.edition.location">Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startDate"><span jhiTranslate="festisApp.edition.startDate">Start Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endDate"><span jhiTranslate="festisApp.edition.endDate">End Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hasCamping"><span jhiTranslate="festisApp.edition.hasCamping">Has Camping</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span jhiTranslate="festisApp.edition.price">Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cover"><span jhiTranslate="festisApp.edition.cover">Cover</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="poster"><span jhiTranslate="festisApp.edition.poster">Poster</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="festivalName"><span jhiTranslate="festisApp.edition.festival">Festival</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let edition of editions ;trackBy: trackId">
+                <td><a [routerLink]="['../edition', edition.id ]">{{edition.id}}</a></td>
+                <td>{{edition.location}}</td>
+                <td>{{edition.startDate | date:'mediumDate'}}</td>
+                <td>{{edition.endDate | date:'mediumDate'}}</td>
+                <td>{{edition.hasCamping}}</td>
+                <td>{{edition.price}}</td>
+                <td>
+                    <a *ngIf="edition.cover" (click)="openFile(edition.coverContentType, edition.cover)">
+                        <img [src]="'data:' + edition.coverContentType + ';base64,' + edition.cover" style="max-height: 30px;" alt="edition image"/>
+                    </a>
+                    <span *ngIf="edition.cover">{{edition.coverContentType}}, {{byteSize(edition.cover)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="edition.poster" (click)="openFile(edition.posterContentType, edition.poster)">
+                        <img [src]="'data:' + edition.posterContentType + ';base64,' + edition.poster" style="max-height: 30px;" alt="edition image"/>
+                    </a>
+                    <span *ngIf="edition.poster">{{edition.posterContentType}}, {{byteSize(edition.poster)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="edition.festivalId">
+                        <a [routerLink]="['../festival', edition.festivalId  ]" >{{edition.festivalName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../edition', edition.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'edition/'+ edition.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'edition/'+ edition.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
