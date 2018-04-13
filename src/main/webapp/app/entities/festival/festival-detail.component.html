@@ -1,0 +1,46 @@
+
+<div *ngIf="festival">
+    <h2><span jhiTranslate="festisApp.festival.detail.title">Festival</span> {{festival.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="festisApp.festival.name">Name</span></dt>
+        <dd>
+            <span>{{festival.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.festival.web">Web</span></dt>
+        <dd>
+            <span>{{festival.web}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.festival.facebook">Facebook</span></dt>
+        <dd>
+            <span>{{festival.facebook}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.festival.twitter">Twitter</span></dt>
+        <dd>
+            <span>{{festival.twitter}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.festival.instagram">Instagram</span></dt>
+        <dd>
+            <span>{{festival.instagram}}</span>
+        </dd>
+        <dt><span jhiTranslate="festisApp.festival.youtube">Youtube</span></dt>
+        <dd>
+            <span>{{festival.youtube}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'festival/'+ festival.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,32 @@
+
+<div *ngIf="follow">
+    <h2><span jhiTranslate="festisApp.follow.detail.title">Follow</span> {{follow.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="festisApp.follow.user">User</span></dt>
+        <dd>
+            {{follow.userLogin}}
+        </dd>
+        <dt><span jhiTranslate="festisApp.follow.artist">Artist</span></dt>
+        <dd>
+            <div *ngIf="follow.artistId">
+                <a [routerLink]="['/artist', follow.artistId]">{{follow.artistName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'follow/'+ follow.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
