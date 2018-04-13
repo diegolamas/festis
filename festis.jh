@@ -1,0 +1,98 @@
+entity Festival {
+	name String required,
+    web String,
+    facebook String,
+    twitter String,
+    instagram String,
+    youtube String
+}
+
+entity Edition {
+	location String required,
+    startDate LocalDate required,
+    endDate LocalDate required,
+    hasCamping Boolean required,
+    price Double,
+    cover ImageBlob,
+    poster ImageBlob
+}
+
+entity Comment {
+	//time Instant required, //sobraría si extiende auditingentity
+    text String required
+}
+
+entity Artist {
+	name String required,
+    previewUrl String, // audio ~30seg. Sziget lo obtiene de spoti, por ejemplo.
+    web String,
+    spotify String,
+    googlemusic String,
+    applemusic String,
+    facebook String,
+    twitter String,
+    instagram String,
+    youtube String,
+    imageUrl String, // CRON cada mes o así para obtener imagen y popularidad
+    popularity Long
+}
+
+entity Announcement {
+	//artistas
+    //edicion
+    //time Instant required, //sobraría si extiende auditingentity
+    text String,
+    image ImageBlob
+}
+
+entity Follow {
+	//time Instant, //sobraría si extiende auditingentity
+}
+
+entity UserExtra {
+	avatar ImageBlob // otra opcion: https://stackoverflow.com/a/44076306
+}
+
+relationship OneToOne {
+	UserExtra{user(login) required} to User
+}
+
+entity Attend {
+	//time Instant, //sobraría si extiende auditingentity
+}
+
+relationship ManyToOne {
+	Follow{user(login) required} to User
+}
+
+relationship OneToMany {
+	Artist{follower} to Follow{artist(name) required}
+}
+
+relationship ManyToOne {
+	Attend{user(login) required} to User
+}
+
+relationship OneToMany {
+	Edition{attendant} to Attend{edition required}
+}
+
+relationship ManyToOne {
+	Edition{festival(name) required} to Festival
+}
+
+relationship OneToMany {
+	Edition{announcement} to Announcement{edition required}
+}
+
+relationship ManyToMany {
+	Announcement{artist(name)} to Artist{announcement}
+}
+
+relationship OneToMany {
+	Edition{comment} to Comment{edition required}
+}
+
+paginate * with infinite-scroll
+dto * with mapstruct
+service * with serviceClass except Festival
