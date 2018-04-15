@@ -11,7 +11,7 @@ import javax.persistence.Lob;
 /**
  * A DTO for the Announcement entity.
  */
-public class AnnouncementDTO implements Serializable {
+public class AnnouncementDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

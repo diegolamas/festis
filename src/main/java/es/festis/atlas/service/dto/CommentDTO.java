@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * A DTO for the Comment entity.
  */
-public class CommentDTO implements Serializable {
+public class CommentDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

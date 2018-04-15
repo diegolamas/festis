@@ -12,7 +12,7 @@ import javax.persistence.Lob;
 /**
  * A DTO for the Edition entity.
  */
-public class EditionDTO implements Serializable {
+public class EditionDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
