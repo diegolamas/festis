@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * A DTO for the Artist entity.
  */
-public class ArtistDTO implements Serializable {
+public class ArtistDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

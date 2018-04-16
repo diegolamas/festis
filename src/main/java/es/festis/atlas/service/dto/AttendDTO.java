@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * A DTO for the Attend entity.
  */
-public class AttendDTO implements Serializable {
+public class AttendDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
