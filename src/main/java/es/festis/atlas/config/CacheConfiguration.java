@@ -57,6 +57,7 @@ public class CacheConfiguration {
             cm.createCache(es.festis.atlas.domain.Follow.class.getName(), jcacheConfiguration);
             cm.createCache(es.festis.atlas.domain.UserExtra.class.getName(), jcacheConfiguration);
             cm.createCache(es.festis.atlas.domain.Attend.class.getName(), jcacheConfiguration);
+            cm.createCache(es.festis.atlas.domain.EntityAuditEvent.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

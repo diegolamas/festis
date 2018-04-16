@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * A DTO for the Follow entity.
  */
-public class FollowDTO implements Serializable {
+public class FollowDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

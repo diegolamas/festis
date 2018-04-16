@@ -33,5 +33,8 @@
     "packageFolder": "es/festis/atlas",
     "jwtSecretKey": "bd1240b306a4773ca14b2ca4847b3946796f8564",
     "jhiPrefix": "jhi"
+  },
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom"
   }
 }

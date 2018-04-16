@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the Festival entity.
  */
-public class FestivalDTO implements Serializable {
+public class FestivalDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
